@@ -4,16 +4,13 @@ public:
     vector<vector<int>> res;
     map<int, int> mp;
     for(int i = 0; i < intervals.size(); i++) {
-        cout<<intervals[i][0]<<' '<<intervals[i][1]<<endl;
         mp[intervals[i][0]] ++;
         mp[intervals[i][1]] --;
 
     }
-    cout<<endl;
     int fistValue = -1;
     int sum = 0;
     for(auto it = mp.begin(); it != mp.end(); it++) {
-        cout<<it->first<<' '<<it->second<<endl;
         if(sum == 0) fistValue = it->first;
         sum += it->second;
         
