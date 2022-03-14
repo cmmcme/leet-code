@@ -10,19 +10,6 @@
  */
 class Solution {
 public:
-ListNode* reverseList(ListNode* node) {
-    if(node->next == NULL) {
-        return node;
-    }
-    
-    ListNode* parent = reverseList(node->next);
-    node->next->next = node;
-    
-    node->next = NULL;
-    
-    return parent;
-}
-
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         ListNode* reverseL1 = l1;
         ListNode* reverseL2 = l2;
@@ -33,7 +20,6 @@ ListNode* reverseList(ListNode* node) {
             if(reverseL1 == NULL) {
                 int sum = reverseL2->val + carry;
                 carry = sum / 10;
-                cout<<sum<<endl;
                 ListNode* list = new ListNode(sum % 10);
                 current->next = list;
                 current = list;
@@ -43,7 +29,6 @@ ListNode* reverseList(ListNode* node) {
             
             if(reverseL2 == NULL) {
                 int sum = reverseL1->val + carry;
-                cout<<sum<<endl;
                 carry = sum / 10;
                 ListNode* list = new ListNode(sum % 10);
                 current->next = list;
