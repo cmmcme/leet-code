@@ -16,34 +16,23 @@ public:
         ListNode* test = new ListNode(0);
         ListNode* current = test;
         int carry = 0;
+        int sum = 0;
         while(reverseL1 != NULL || reverseL2 != NULL) {
             if(reverseL1 == NULL) {
-                int sum = reverseL2->val + carry;
-                carry = sum / 10;
-                ListNode* list = new ListNode(sum % 10);
-                current->next = list;
-                current = list;
+                sum = reverseL2->val + carry;
                 reverseL2 = reverseL2->next;
-                continue;
-            }
-            
-            if(reverseL2 == NULL) {
-                int sum = reverseL1->val + carry;
-                carry = sum / 10;
-                ListNode* list = new ListNode(sum % 10);
-                current->next = list;
-                current = list;
+            } else if(reverseL2 == NULL) {
+                sum = reverseL1->val + carry;
                 reverseL1 = reverseL1->next;
-                continue;
+            } else {
+                sum = reverseL1->val + reverseL2->val + carry;
+                reverseL1 = reverseL1->next;
+                reverseL2 = reverseL2->next;
             }
-            
-            int sum = reverseL1->val + reverseL2->val + carry;
             carry = sum / 10;
             ListNode* list = new ListNode(sum % 10);
             current->next = list;
             current = list;
-            reverseL1 = reverseL1->next;
-            reverseL2 = reverseL2->next;
         }
         
         if(carry != 0) {
