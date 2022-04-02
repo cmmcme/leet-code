@@ -18,8 +18,6 @@ public:
     }
     bool divisorGame(int n) {
         memset(dp, -1, sizeof(dp));
-        func(n);
-        
-        return dp[n];
+        return func(n);
     }
 };
