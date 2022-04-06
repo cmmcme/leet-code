@@ -8,13 +8,10 @@ public:
         
         int mid = (l + r) / 2;
         
-        if(nums[mid] == target) {
-            return mid;
-        }
-        
         if(nums[l] == target) return l;
         if(nums[r] == target) return r;
-        
+        if(nums[mid] == target) return mid;
+
         if(nums[l] < nums[mid]) {
             if(target > nums[mid] || target < nums[l]) l = mid + 1;
             else r = mid - 1;
