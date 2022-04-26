@@ -5,8 +5,7 @@ public:
         dp[0] = 1;
         for(int i = 0 ; i < coins.size(); ++i) {
             int coin = coins[i];
-            dp[coin] += 1;
-            for(int j = coin + 1; j <= amount; ++j) {
+            for(int j = coin; j <= amount; ++j) {
                 if(dp[j - coin] != 0) {
                     dp[j] += dp[j-coin];
                 }
