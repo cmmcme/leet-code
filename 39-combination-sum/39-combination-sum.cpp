@@ -23,7 +23,7 @@ void func(vector<int>& candidates, int target, vector<int>& res, int lastIndex) 
         return ;
     }
     
-    if(resultVec.size() >= 150) return ;
+  //  if(resultVec.size() >= 150) return ;
     
     for(int i = lastIndex; i < candidates.size(); ++i) {
         int coin = candidates[i];
