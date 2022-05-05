@@ -2,7 +2,8 @@ class Solution {
 public:
     bool visited[10] = {false};
     vector<vector<int>> reason;
-    void dfs(vector<int>& nums, vector<int>& res) {
+    vector<int> res;
+    void dfs(vector<int>& nums) {
         if(res.size() == nums.size()) {
             reason.push_back(res);
             return;
@@ -12,15 +13,13 @@ public:
             if(visited[i]) continue;
             visited[i] = true;
             res.push_back(nums[i]);
-            dfs(nums, res);
+            dfs(nums);
             visited[i] = false;
             res.pop_back();
         }
     }
-    vector<vector<int>> permute(vector<int>& nums) {
-        vector<int> res;
-        
-        dfs(nums, res);
+    vector<vector<int>> permute(vector<int>& nums) {        
+        dfs(nums);
         
         return reason;
     }
