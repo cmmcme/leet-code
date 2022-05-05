@@ -1,6 +1,6 @@
 class Solution {
 public:
-    bool visited[22] = {false};
+    bool visited[10] = {false};
     vector<vector<int>> reason;
     void dfs(vector<int>& nums, vector<int>& res) {
         if(res.size() == nums.size()) {
@@ -9,11 +9,11 @@ public:
         }
         
         for(int i = 0; i < nums.size(); ++i) {
-            if(visited[nums[i] + 10]) continue;
-            visited[nums[i] + 10] = true;
+            if(visited[i]) continue;
+            visited[i] = true;
             res.push_back(nums[i]);
             dfs(nums, res);
-            visited[nums[i] + 10] = false;
+            visited[i] = false;
             res.pop_back();
         }
     }
