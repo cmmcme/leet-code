@@ -8,10 +8,12 @@ public:
             int top = que.front();
             que.pop();
             
-            if(arr[top] == 0) return true;
             if(visited[top]) {
                 continue;
             }
+                    
+            if(arr[top] == 0) return true;
+            
             visited[top] = true;
             
             if(top - arr[top] >= 0) que.push(top - arr[top]);
