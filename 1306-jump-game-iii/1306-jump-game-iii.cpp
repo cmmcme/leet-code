@@ -11,13 +11,14 @@ public:
             if(visited[top]) {
                 continue;
             }
-                    
-            if(arr[top] == 0) return true;
             
             visited[top] = true;
             
             if(top - arr[top] >= 0) que.push(top - arr[top]);
             if(top + arr[top] < arr.size()) que.push(top + arr[top]);
+        }
+        for(int i = 0 ; i < arr.size(); ++i) {
+            if(arr[i] == 0 && visited[i]) return true;
         }
         
         return false;
