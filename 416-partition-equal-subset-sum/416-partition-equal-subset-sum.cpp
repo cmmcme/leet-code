@@ -14,7 +14,8 @@ public:
                 if(now - nums[i] < 0) continue;
                 if(dp[now - nums[i]] == false) continue;
                 dp[now] = true;
-    
+                
+                if(now == target) return true;
             }
         }
 
