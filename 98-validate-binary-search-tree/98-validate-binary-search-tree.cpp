@@ -11,16 +11,16 @@
  */
 class Solution {
 public:
-bool dfs(TreeNode* current, TreeNode* left, TreeNode* right) {
+bool dfs(TreeNode* current, TreeNode* minNode, TreeNode* maxNode) {
     if(current == NULL) {
         return true;
     }
     
-    if(left && current->val <= left ->val) return false;
+    if(minNode && current->val <= minNode ->val) return false;
     
-    if(right && current->val >= right -> val) return false;
+    if(maxNode && current->val >= maxNode -> val) return false;
     
-    return dfs(current->left, left, current) && dfs(current->right, current, right);
+    return dfs(current->left, minNode, current) && dfs(current->right, current, maxNode);
 }
 
 bool isValidBST(TreeNode* root) {
