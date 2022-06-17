@@ -1,45 +1,35 @@
 class Solution {
 public:
-    int parents[1010];
-    bool isUnionEdges[1010] = {false};
-    int getParent(int son) {
-        if(parents[son] == son) return son;
-        return parents[son] = getParent(parents[son]);
-    }
-    
-    void unionParent(int first, int second) {
-        int firstParent = getParent(first);
-        int secondParent = getParent(second);
+    int parent[1010];
+    int parents(int n) {
+        if(parent[n] == n) return n;
         
-        if(first < second) parents[secondParent] = firstParent;
-        else parents[firstParent] = secondParent;
+        return parent[n] = parents(parent[n]);
     }
-    
-    bool isSameParent(int first, int second) {
-        int firstParent = getParent(first);
-        int secondParent = getParent(second);
+    bool unionFind(int a, int b) {
+        int a1Parent = parents(parent[a]);
+        int b1Parent = parents(parent[b]);
         
-        return firstParent == secondParent;
+
+        if(a1Parent == b1Parent) return true;
+        
+        parent[b1Parent] = parent[a1Parent];
+        
+        return false;
     }
-    
     vector<int> findRedundantConnection(vector<vector<int>>& edges) {
-        vector<int> res;
         for(int i = 1; i <= edges.size(); ++i) {
-            parents[i] = i;
+            parent[i] = i;
         }
-        
+        vector<int> res;
         for(int i = 0; i < edges.size(); ++i) {
-            int first = edges[i][0];
-            int second = edges[i][1];
-            if(isSameParent(first, second)) continue;
-            isUnionEdges[i] = true;
-            unionParent(first, second);
+            int node1 = edges[i][0];
+            int node2 = edges[i][1];
+            
+            if(unionFind(node1, node2)) {
+                res = edges[i];
+            }
         }
-        
-        for(int i = edges.size() - 1; i >= 0; --i) {
-            if(!isUnionEdges[i]) return edges[i];
-        }
-        
         return res;
     }
 };
